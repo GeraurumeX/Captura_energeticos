@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="card card-body">
+            <form action="/add_consumption" method="POST">
+                <div class="form-group">
+                    <input type="text" name="year" placeholder="año" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="month" placeholder="mes" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="water_consumption" placeholder="consumo de agua en metros cúbicos" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="electricity_consumption" placeholder="consumo de electricidad en kw/h" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="gasoline_consumption" placeholder="consumo de gasolina en litros" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="gas_consumption" placeholder="consumo de gas en litros" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <table class="table table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>Year</td>
+                    <td>Month</td>
+                    <td>Water</td>
+                    <td>Electricity</td>
+                    <td>Gasoline</td>
+                    <td>Gas</td>
+                    <td>Operations</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consumption in consumptions %}
+                <tr>
+                    <td>{{ consumption.1 }}</td>
+                    <td>{{ consumption.2 }}</td>
+                    <td>{{ consumption.3 }}</td>
+                    <td>{{ consumption.4 }}</td>
+                    <td>{{ consumption.5 }}</td>
+                    <td>{{ consumption.6 }}</td>
+                    <td>
+                        <a href="/edit/{{ consumption.0 }}" class="btn btn-secondary">Edit</a>
+                        <a href="/delete/{{ consumption.0 }}" class="btn btn-danger btn-delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

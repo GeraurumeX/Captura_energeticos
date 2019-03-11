@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+        <form action="/update/{{ consumption.0 }}" method="POST">
+
+            <div class="form-group">
+                <input type="text" name="year" placeholder="año" value="{{ consumption.1 }}" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="month" placeholder="mes" value="{{ consumption.2 }}"class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="water_consumption" placeholder="consumo de agua en litros cúbicos" value="{{ consumption.3 }}" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="electricity_consumption" placeholder="consumo de electricidad en kw/h" value="{{ consumption.4 }}"class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="gasoline_consumption" placeholder="consumo de gasolina en litros" value="{{ consumption.5 }}"class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="gas_consumption" placeholder="consumo de gas en litros" value="{{ consumption.6 }}"class="form-control">
+            </div>
+            
+            <div class="form-group">
+               <button type="submit" class="btn btn-success btn-block">Save</button> 
+            </div>
+            
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
